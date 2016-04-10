@@ -23,13 +23,13 @@ getDigits x = getDigits(quot x 10) ++ [x `mod` 10]
 mod10 :: Integer -> Integer
 mod10 x = x `mod` 10
 
-decomposeItemsGreaterThan10 :: [Integer] -> [Integer]
-decomposeItemsGreaterThan10 [] = []
-decomposeItemsGreaterThan10 (x:xs) = getDigits(x) ++ decomposeItemsGreaterThan10(xs)
+decomposeIntsGreaterThan10 :: [Integer] -> [Integer]
+decomposeIntsGreaterThan10 [] = []
+decomposeIntsGreaterThan10 (x:xs) = getDigits(x) ++ decomposeIntsGreaterThan10(xs)
 
 sumDigits :: [Integer] -> Integer
 sumDigits [] = 0
 sumDigits (x:xs) = x + sumDigits(xs)
 
 validate :: Integer -> Bool
-validate x = (mod10 . sumDigits . decomposeItemsGreaterThan10 . doubleEveryOther . revIntList . getDigits) x == 0
+validate x = (mod10 . sumDigits . decomposeIntsGreaterThan10 . doubleEveryOther . revIntList . getDigits) x == 0
